@@ -1,0 +1,274 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* html tailus ui */
+@layer base {
+  :root {
+    --background: 270 33% 97%;
+    --foreground: 270 30% 17%;
+
+    --card: 270 30% 98%;
+    --card-foreground: 270 30% 17%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 270 30% 17%;
+
+    --primary: 275 30% 32%;
+    --primary-foreground: 270 33% 97%;
+
+    --secondary: 275 25% 39%;
+    --secondary-foreground: 270 33% 97%;
+
+    --muted: 270 25% 94%;
+    --muted-foreground: 270 15% 45%;
+
+    --accent: 43 50% 57%;
+    --accent-foreground: 270 30% 17%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 270 20% 88%;
+    --input: 270 20% 88%;
+    --ring: 275 30% 32%;
+
+    --radius: 0.75rem;
+
+    --gold: 43 50% 57%;
+    --gold-foreground: 270 30% 17%;
+    --lavender: 270 33% 95%;
+    --deep-purple: 270 30% 17%;
+
+    --sidebar-background: 275 30% 15%;
+    --sidebar-foreground: 270 33% 97%;
+    --sidebar-primary: 43 50% 57%;
+    --sidebar-primary-foreground: 270 30% 17%;
+    --sidebar-accent: 275 25% 22%;
+    --sidebar-accent-foreground: 270 33% 97%;
+    --sidebar-border: 275 25% 25%;
+    --sidebar-ring: 43 50% 57%;
+  }
+}
+
+@layer utilities {
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes particle-float {
+    0%,
+    100% {
+      transform: translateY(0) translateX(0);
+      opacity: 0;
+    }
+    25% {
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(-100px) translateX(30px);
+      opacity: 0.5;
+    }
+    75% {
+      opacity: 0.3;
+    }
+    100% {
+      transform: translateY(-200px) translateX(-20px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade-up {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-up {
+    0% {
+      opacity: 0;
+      transform: translateY(60px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      box-shadow: 0 0 20px hsl(43 50% 57% / 0.2);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(43 50% 57% / 0.4);
+    }
+  }
+
+  @keyframes scroll-indicator {
+    0%,
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(10px);
+      opacity: 0.3;
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  @keyframes count-up {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.8s ease-out both;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 1s ease-out both;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  .animate-scroll-indicator {
+    animation: scroll-indicator 2s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+  }
+}
+
+@layer components {
+  ul {
+    list-style: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .entry-content ul,
+  .entry-content ol {
+    list-style: revert;
+    margin-left: revert;
+  }
+
+  /* wooCommerce  */
+
+  .price ins {
+    @apply text-lg font-semibold text-primary;
+  }
+
+  .price del {
+    @apply text-sm text-primary/50 line-through;
+  }
+
+  .glass-card {
+    @apply bg-white/60 backdrop-blur-xl border border-white/40 shadow-lg;
+  }
+
+  .gold-glow {
+    box-shadow: 0 0 20px hsl(43 50% 57% / 0.3);
+  }
+
+  .gold-border-glow {
+    border: 1px solid hsl(43 50% 57% / 0.4);
+    box-shadow: 0 0 15px hsl(43 50% 57% / 0.15);
+  }
+
+  .purple-gradient {
+    background: linear-gradient(135deg, hsl(275 30% 32%), hsl(275 25% 20%));
+  }
+
+  .hero-gradient {
+    background: linear-gradient(
+      180deg,
+      hsl(275 30% 18%) 0%,
+      hsl(275 35% 25%) 50%,
+      hsl(270 30% 30%) 100%
+    );
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, hsl(43 50% 57%), hsl(40 60% 70%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-reveal {
+    animation: fade-in 0.8s ease-out both;
+  }
+
+  .stagger-1 {
+    animation-delay: 0.1s;
+  }
+  .stagger-2 {
+    animation-delay: 0.2s;
+  }
+  .stagger-3 {
+    animation-delay: 0.3s;
+  }
+  .stagger-4 {
+    animation-delay: 0.4s;
+  }
+
+  .floating {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: hsl(43 50% 57% / 0.6);
+    animation: particle-float 8s ease-in-out infinite;
+  }
+
+  /* tractions */
+  #ast-scroll-top {
+    @apply flex justify-center items-center !important;
+  }
+}

@@ -1,0 +1,218 @@
+/* ==========================================================
+   White Friday campaign — uses the theme tokens (--primary, --accent, --deep-purple)
+   ========================================================== */
+
+/* ---------- Product card corner ribbon ---------- */
+.astra-shop-thumbnail-wrap,
+.products-container li.product {
+  position: relative;
+}
+
+/* the ribbon replaces Astra's "Sale!" circle while the campaign runs */
+.astra-shop-thumbnail-wrap .ast-onsale-card,
+.astra-shop-thumbnail-wrap .onsale {
+  display: none !important;
+}
+
+.wf-ribbon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 112px;
+  height: 112px;
+  overflow: hidden;
+  z-index: 6;
+  pointer-events: none;
+  border-top-right-radius: inherit;
+}
+
+/* home cards: the "الاكثر مبيعاً" badge moves to the left corner while the ribbon takes the right */
+.wf-badge-swap {
+  right: auto !important;
+  left: 0.75rem;
+}
+
+.wf-ribbon > span {
+  position: absolute;
+  top: 24px;
+  right: -40px;
+  width: 168px;
+  padding: 7px 0 6px;
+  transform: rotate(45deg);
+  overflow: hidden;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+  color: hsl(var(--accent));
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--deep-purple)) 100%);
+  border-top: 1.5px solid hsl(var(--accent));
+  border-bottom: 1.5px solid hsl(var(--accent));
+  box-shadow: 0 6px 14px -4px hsl(var(--deep-purple) / 0.55);
+}
+
+/* gold sheen sweeping across the ribbon */
+.wf-ribbon > span::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(80deg, transparent 30%, hsl(var(--accent) / 0.45) 50%, transparent 70%);
+  transform: translateX(-120%);
+  animation: wf-sheen 3.2s ease-in-out infinite;
+}
+
+@keyframes wf-sheen {
+  0%, 55% { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
+}
+
+@media (max-width: 544px) {
+  .wf-ribbon { width: 92px; height: 92px; }
+  .wf-ribbon > span { top: 19px; right: -38px; width: 140px; font-size: 11px; padding: 6px 0 5px; }
+}
+
+/* ---------- Hanging tag on "احدث العروض" ---------- */
+.wf-hang-anchor {
+  position: relative;
+  display: inline; /* containing block = the text glyphs, not the tall header line */
+}
+
+.wf-hang {
+  position: absolute;
+  top: calc(100% - 2px);
+  inset-inline-end: 1px; /* under the last letter (ض in RTL) */
+  width: 0;
+  height: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.wf-hang__swing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateX(-50%);
+  transform-origin: 50% 0;
+  animation: wf-swing 3.6s ease-in-out infinite;
+}
+
+.wf-hang__string {
+  display: block;
+  width: 1.5px;
+  height: 44px;
+  background: linear-gradient(hsl(var(--primary)), hsl(var(--accent)) 75%);
+  border-radius: 2px;
+}
+
+.wf-hang__tag {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  min-width: 96px;
+  margin-top: -1px;
+  padding: 18px 10px 9px;
+  color: hsl(var(--deep-purple));
+  background: linear-gradient(160deg, hsl(43 62% 68%) 0%, hsl(var(--accent)) 55%, hsl(40 48% 46%) 100%);
+  clip-path: polygon(50% 0, 100% 14px, 100% 100%, 0 100%, 0 14px);
+  border-radius: 0 0 8px 8px;
+  white-space: nowrap;
+  line-height: 1.15;
+  filter: drop-shadow(0 8px 14px hsl(var(--deep-purple) / 0.45));
+}
+
+/* gold inner frame */
+.wf-hang__tag::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px solid hsl(var(--deep-purple) / 0.35);
+  border-top: 0;
+  border-radius: 0 0 5px 5px;
+  clip-path: inherit;
+  pointer-events: none;
+}
+
+/* eyelet where the string goes through */
+.wf-hang__tag::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  margin-left: -3.5px;
+  border-radius: 50%;
+  background: hsl(var(--deep-purple));
+  box-shadow: 0 0 0 1.5px hsl(43 62% 72%);
+}
+
+.wf-hang__tag small {
+  font-size: 11px;
+  font-weight: 600;
+  color: hsl(var(--primary));
+}
+
+.wf-hang__tag strong {
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+@keyframes wf-swing {
+  0%, 100% { transform: translateX(-50%) rotate(5deg); }
+  50% { transform: translateX(-50%) rotate(-5deg); }
+}
+
+/* Mobile / off-canvas menu: show it as an inline badge instead of hanging */
+.ast-header-break-point .wf-hang {
+  position: static;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  margin-inline-start: 8px;
+  vertical-align: middle;
+}
+
+.ast-header-break-point .wf-hang__swing {
+  position: static;
+  transform: none;
+  animation: none;
+}
+
+.ast-header-break-point .wf-hang__string,
+.ast-header-break-point .wf-hang__tag::after {
+  display: none;
+}
+
+.ast-header-break-point .wf-hang__tag {
+  flex-direction: row;
+  gap: 4px;
+  min-width: 0;
+  padding: 4px 10px;
+  clip-path: none;
+  border-radius: 999px;
+  filter: none;
+}
+
+.ast-header-break-point .wf-hang__tag::before {
+  inset: 2px;
+  border-top: 1px solid hsl(var(--deep-purple) / 0.35);
+  border-radius: 999px;
+}
+
+.ast-header-break-point .wf-hang__tag small,
+.ast-header-break-point .wf-hang__tag strong {
+  font-size: 11px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wf-hang__swing,
+  .wf-ribbon > span::after {
+    animation: none;
+  }
+}

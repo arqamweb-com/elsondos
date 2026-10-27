@@ -1,0 +1,31 @@
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  text-align: center;
+  margin-bottom: 3rem;
+
+  .product {
+    border: 1px solid #121212;
+    border-radius: 30px;
+    padding: 20px;
+
+    .product-title {
+      margin-bottom: 0.3rem;
+
+      a {
+        color: #121212;
+        font-size: 20px;
+
+        @media (min-width: 768px) {
+          font-size: 24px;
+        }
+      }
+    }
+
+    .product-price {
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+  }
+}

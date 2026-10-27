@@ -1,0 +1,254 @@
+/* Start Global Rules */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* Smooth scroll */
+:root {
+  scroll-behavior: smooth;
+}
+
+/*--------------------------------------------------------------
+# Scroll Bar
+--------------------------------------------------------------*/
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--ast-global-color-0);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--ast-global-color-0), transparent 25%);
+}
+
+/*Scroll Bar*/
+
+@import "../scss/components/utilities";
+@import "../scss/components/brands";
+@import "../scss/components/products";
+@import "../scss/components/woocommerce";
+
+.main-padding {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.ast-hfb-header .site-header-section > .ast-header-search,
+.ast-hfb-header .ast-header-search {
+  margin-left: 0rem;
+  margin-right: 0rem;
+
+  .search-box {
+    .search-field {
+      @media (max-width: 991px) {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 991px) {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 991px) {
+    flex: 1;
+  }
+  @media (min-width: 992px) {
+    margin-left: 5rem;
+  }
+}
+
+.site-header .ast-inline-search.ast-search-menu-icon .search-field {
+  &:focus {
+    border: none;
+    outline: none;
+    color: #000000;
+  }
+
+  border: none;
+  outline: none;
+  box-shadow: none;
+  padding-right: 1em;
+}
+
+.site-header .ast-inline-search.ast-search-menu-icon .search-form {
+  padding-left: 10px;
+}
+
+.ast-header-search .ast-icon {
+  line-height: 1;
+}
+
+html[lang="ar"] {
+  .ast-search-menu-icon .search-form button.search-submit {
+    right: unset;
+    left: 4px;
+  }
+}
+.ast-search-menu-icon .search-form button.search-submit {
+  background: var(--ast-global-color-0);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: grid;
+  place-items: center;
+}
+
+/*--------------------------------------------------------------
+# General Styling & Shared Classes
+--------------------------------------------------------------*/
+
+a {
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: color-mix(in srgb, var(--ast-global-color-0), transparent 25%);
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*--------------------------------------------------------------
+# Global Section Titles
+--------------------------------------------------------------*/
+.section-title {
+  text-align: center;
+
+  h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 3rem;
+    border: 7px solid var(--ast-global-color-0);
+    width: fit-content;
+    margin-inline: auto;
+    border-radius: 20px;
+    padding: 10px 30px;
+    background-color: var(--ast-global-color-0);
+    color: #ffffff;
+
+    @media (min-width: 768px) {
+      font-size: 35px;
+      padding: 5px 100px;
+    }
+  }
+}
+
+// Menu Links
+.main-navigation {
+  > ul.main-header-menu {
+    li {
+      &.current-menu-item.current_page_item,
+      &.current-menu-item {
+        .menu-link {
+          border-color: var(--ast-global-color-0);
+        }
+      }
+
+      .menu-link {
+        @media (min-width: 992px) {
+          border: 2px solid transparent;
+          line-height: 1.5;
+          border-radius: 30px;
+          font-weight: bold;
+          height: fit-content;
+          padding-inline: 1.1rem;
+          padding-block: 0.2rem;
+
+          &:focus {
+            outline: none;
+          }
+
+          &:hover {
+            border-color: var(--ast-global-color-0);
+          }
+        }
+      }
+    }
+
+    @media (min-width: 922px) {
+      gap: 0.5rem;
+    }
+  }
+}
+
+// Footer Top
+.top-footer-info {
+  max-width: 500px;
+  margin-inline: auto;
+  margin-bottom: -50px;
+  z-index: 1;
+  display: flex;
+  gap: 15px;
+  background-color: var(--ast-global-color-0);
+  padding: 10px 30px;
+  border-radius: 30px;
+
+  .info {
+    .icon {
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      padding: 15px;
+      border-radius: 50%;
+      line-height: 1;
+
+      @media (min-width: 768px) {
+        padding: 12px;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    gap: 40px;
+    padding: 10px 50px;
+  }
+}
+
+// background Footer
+
+footer {
+  background-color: #000000;
+  background-image: url(https://elsondosperfumes.com/wp-content/uploads/2025/01/Footer-BG.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+html[lang="en-US"] {
+  .footer-widget-area[data-section="sidebar-widgets-footer-widget-1"]
+    .footer-widget-area-inner,
+  .footer-widget-area[data-section="sidebar-widgets-footer-widget-2"]
+    .footer-widget-area-inner,
+  .footer-widget-area[data-section="sidebar-widgets-footer-widget-3"]
+    .footer-widget-area-inner {
+    text-align: left;
+  }
+
+  .footer-widget-area[data-section="sidebar-widgets-footer-widget-4"]
+    .footer-widget-area-inner {
+    @media (min-width: 545px) {
+      text-align: left;
+    }
+  }
+  .footer-widget-area[data-section="sidebar-widgets-footer-widget-5"]
+    .footer-widget-area-inner {
+    @media (min-width: 545px) {
+      text-align: right;
+    }
+  }
+}
