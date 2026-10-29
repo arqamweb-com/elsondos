@@ -22,7 +22,7 @@ function elsondos_wf_default_nights()
 {
     $start  = strtotime(ELSONDOS_WF_START);
     $titles = array(__('العطور الرجالي', 'arqamweb'), __('العطور الحريمي', 'arqamweb'), __('الرصاصي وسويس أرابيان', 'arqamweb'), __('الفرصة الأخيرة على كل حاجة', 'arqamweb'));
-    $days   = array(__('الليلة الأولى', 'arqamweb'), __('الليلة التانية', 'arqamweb'), __('الليلة التالتة', 'arqamweb'), __('الليلة الأخيرة', 'arqamweb'));
+    $days   = array(__('الجمعة الأولى', 'arqamweb'), __('الجمعة التانية', 'arqamweb'), __('الجمعة التالتة', 'arqamweb'), __('الجمعة الأخيرة', 'arqamweb'));
     $pcts   = array(40, 50, 35, 50);
     $nights = array();
 
@@ -184,7 +184,7 @@ function elsondos_wf_night_row($id, $n)
         <table class="form-table" role="presentation" style="margin:0">
             <tr>
                 <th><label><?php esc_html_e('Night name', 'arqamweb'); ?></label></th>
-                <td><input type="text" class="regular-text" name="<?php echo esc_attr($name); ?>[day]" value="<?php echo esc_attr($n['day']); ?>" placeholder="الليلة الأولى" required></td>
+                <td><input type="text" class="regular-text" name="<?php echo esc_attr($name); ?>[day]" value="<?php echo esc_attr($n['day']); ?>" placeholder="الجمعة الأولى" required></td>
             </tr>
             <tr>
                 <th><label><?php esc_html_e('Opens', 'arqamweb'); ?></label></th>

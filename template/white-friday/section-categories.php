@@ -6,9 +6,9 @@
 $img_dir = get_stylesheet_directory_uri() . '/frontend/assets/white-friday/';
 
 $cats = array(
-    array('term' => 39, 'img' => 'cat-men.jpg',    'label' => __('رجالي', 'arqamweb'),   'title' => __('عطور رجالي', 'arqamweb'),   'pct' => 40),
-    array('term' => 40, 'img' => 'cat-women.jpg',  'label' => __('حريمي', 'arqamweb'),   'title' => __('عطور حريمي', 'arqamweb'),   'pct' => 50),
-    array('term' => 94, 'img' => 'cat-unisex.jpg', 'label' => __('يونيسكس', 'arqamweb'), 'title' => __('عطور يونيسكس', 'arqamweb'), 'pct' => 35),
+    array('term' => 39, 'img' => 'cat-men.jpg',    'label' => __('رجالي', 'arqamweb'),   'title' => __('عطور رجالي', 'arqamweb')),
+    array('term' => 40, 'img' => 'cat-women.jpg',  'label' => __('حريمي', 'arqamweb'),   'title' => __('عطور حريمي', 'arqamweb')),
+    array('term' => 94, 'img' => 'cat-unisex.jpg', 'label' => __('يونيسكس', 'arqamweb'), 'title' => __('عطور يونيسكس', 'arqamweb')),
 );
 ?>
 <!-- CATEGORIES (concept 1) -->
@@ -17,7 +17,7 @@ $cats = array(
         <div class="section-head reveal">
             <span class="eyebrow eyebrow--dark"><?php echo __('اختار قسمك', 'arqamweb'); ?></span>
             <h2><?php echo __('خصومات على كل الأقسام', 'arqamweb'); ?></h2>
-            <p><?php echo __('كل قسم ليه نسبة خصم مختلفة، والكمية محدودة.', 'arqamweb'); ?></p>
+            <p><?php echo __('عروض على كل قسم، والكمية محدودة.', 'arqamweb'); ?></p>
         </div>
         <div class="cats">
             <?php foreach ($cats as $cat) :
@@ -25,7 +25,7 @@ $cats = array(
                 $link = get_term_link((int) $term_id, 'product_cat');
                 $link = is_wp_error($link) ? '#deals' : $link;
             ?>
-                <a href="<?php echo esc_url($link); ?>" class="cat reveal"><img src="<?php echo esc_url($img_dir . $cat['img']); ?>" alt="<?php echo esc_attr($cat['title']); ?>" loading="lazy"><div class="cat__body"><small><?php echo esc_html($cat['label']); ?></small><h3><?php echo esc_html($cat['title']); ?></h3><div class="cat__pct"><?php echo __('لحد', 'arqamweb'); ?> <b><?php echo (int) $cat['pct']; ?>%</b></div><span class="cat__go"><?php echo __('تسوق القسم ←', 'arqamweb'); ?></span></div></a>
+                <a href="<?php echo esc_url($link); ?>" class="cat reveal"><img src="<?php echo esc_url($img_dir . $cat['img']); ?>" alt="<?php echo esc_attr($cat['title']); ?>" loading="lazy"><div class="cat__body"><small><?php echo esc_html($cat['label']); ?></small><h3><?php echo esc_html($cat['title']); ?></h3><span class="cat__go"><?php echo __('تسوق القسم ←', 'arqamweb'); ?></span></div></a>
             <?php endforeach; ?>
         </div>
     </div>

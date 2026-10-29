@@ -40,7 +40,7 @@
 
   /* ---------- Gift box (hero + popup share one saved prize) ---------- */
   var PRIZES = DATA.prizes || [];
-  var KEY = 'sondos-wf-prize';
+  var KEY = 'sondos-wf-prize-ship';
   var gifts = document.querySelectorAll('[data-wf-gift]');
 
   function pick() {

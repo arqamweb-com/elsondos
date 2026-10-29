@@ -11,7 +11,7 @@
 
                 <h2 class="text-3xl md:text-5xl font-bold text-primary-foreground mb-4">
                     <?php echo __("خصم يصل إلى", "arqamweb"); ?>
-                    <span class="text-gradient-gold">50%</span>
+                    <span class="text-gradient-gold">20%</span>
                 </h2>
 
                 <p class="text-primary-foreground/70 mb-8 text-lg max-w-xl mx-auto">
