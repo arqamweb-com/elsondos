@@ -4,7 +4,7 @@
         <div>
             <span class="eyebrow eyebrow--dark animate-fade-up d1"><?php echo __('الجمعة البيضاء · هدية لكل زائر', 'arqamweb'); ?></span>
             <h1 class="animate-fade-up d2"><?php echo __('افتح الصندوق', 'arqamweb'); ?><em class="text-gradient-gold"><?php echo __('واكسب شحن مجاني', 'arqamweb'); ?></em></h1>
-            <p class="hero2__sub animate-fade-up d3"><?php echo __('كل زائر ليه محاولة واحدة. الصندوق فيه كود شحن مجاني، والكود يشتغل على أي طلب في الموقع.', 'arqamweb'); ?></p>
+            <p class="hero2__sub animate-fade-up d3"><?php echo __('افتح الصندوق وشوف هديتك: الشحن مجاني على كل الطلبات في الموقع، من غير كود.', 'arqamweb'); ?></p>
             <div class="hero2__count animate-fade-up d4">
                 <span data-countdown-label><?php echo __('العروض تبدأ خلال', 'arqamweb'); ?></span>
                 <div class="countdown countdown--light" data-countdown>

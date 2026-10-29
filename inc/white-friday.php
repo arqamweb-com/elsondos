@@ -135,9 +135,9 @@ add_action('wp_enqueue_scripts', function () {
         'page'   => elsondos_wf_page_url(),
         'ajax'   => admin_url('admin-ajax.php'),
         'lang'   => (string) apply_filters('wpml_current_language', ''),
-        // weights are out of 100, the code is created by the El Sondos Free Shipping Coupon plugin
+        // weights are out of 100, free shipping itself is applied by the El Sondos Free Shipping plugin
         'prizes' => array(
-            array('title' => __('شحن مجاني', 'arqamweb'), 'code' => 'WFSHIP', 'w' => 100),
+            array('title' => __('شحن مجاني', 'arqamweb'), 'w' => 100),
         ),
         'i18n'   => array(
             'live'        => __('شغالة دلوقتي', 'arqamweb'),

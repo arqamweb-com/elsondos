@@ -51,8 +51,6 @@
   function show(stage, p, burst) {
     stage.querySelector('[data-gift-box]').classList.add('is-open');
     stage.querySelector('[data-prize-title]').textContent = p.title;
-    stage.querySelector('[data-prize-code]').textContent = p.code;
-    stage.querySelector('[data-prize-copy]').setAttribute('data-copy', p.code);
     stage.querySelector('[data-gift-prize]').classList.add('is-on');
     if (burst) confetti(stage.querySelector('[data-gift-confetti]'));
   }

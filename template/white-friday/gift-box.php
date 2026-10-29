@@ -16,8 +16,7 @@
     <div class="prize" data-gift-prize aria-live="polite">
         <small><?php echo __('مبروك! كسبت', 'arqamweb'); ?></small>
         <b data-prize-title>—</b>
-        <div class="coupon"><code data-prize-code>—</code><button type="button" data-prize-copy data-copy=""><?php echo __('انسخ', 'arqamweb'); ?></button></div>
-        <p><?php echo __('الكود صالح لحد 30 نوفمبر على أي طلب في الموقع.', 'arqamweb'); ?></p>
-        <a href="<?php echo esc_url(elsondos_is_white_friday_page() ? '#deals' : elsondos_wf_page_url() . '#deals'); ?>" class="btn btn-primary btn-sm" style="margin-top:12px" data-popup-close><?php echo __('استخدمه دلوقتي', 'arqamweb'); ?></a>
+        <p><?php echo __('على كل الطلبات في الموقع، من غير كود.', 'arqamweb'); ?></p>
+        <a href="<?php echo esc_url(elsondos_is_white_friday_page() ? '#deals' : elsondos_wf_page_url() . '#deals'); ?>" class="btn btn-primary btn-sm" style="margin-top:12px" data-popup-close><?php echo __('تسوق دلوقتي', 'arqamweb'); ?></a>
     </div>
 </div>
