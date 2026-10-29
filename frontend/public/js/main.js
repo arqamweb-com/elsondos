@@ -101,3 +101,39 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 });
+
+// Hero slider (fade)
+document.addEventListener("DOMContentLoaded", () => {
+  const slides = document.querySelectorAll(".hero-slider__slide");
+  const prev = document.querySelector(".hero-slider__arrow--prev");
+  const next = document.querySelector(".hero-slider__arrow--next");
+
+  if (slides.length < 2) return;
+
+  let current = 0;
+  let timer;
+
+  const goTo = (index) => {
+    slides[current].classList.remove("is-active");
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add("is-active");
+  };
+
+  const start = () => {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(current + 1), 5000);
+  };
+
+  // restart the timer so the picked slide gets a full 5 seconds
+  prev?.addEventListener("click", () => {
+    goTo(current - 1);
+    start();
+  });
+
+  next?.addEventListener("click", () => {
+    goTo(current + 1);
+    start();
+  });
+
+  start();
+});

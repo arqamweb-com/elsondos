@@ -1,0 +1,74 @@
+/* ---------- Front page hero slider ---------- */
+
+/* full screen height like the old hero; images are cropped to fill it */
+.hero-slider {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: hsl(var(--deep-purple));
+}
+
+.hero-slider__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+}
+
+.hero-slider__slide.is-active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.hero-slider__slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slider__slide {
+    transition: none;
+  }
+}
+
+/* ---------- Arrows ---------- */
+/* logical sides: "prev" sits on the right in Arabic (RTL) and on the left in English */
+.hero-slider__arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1.5px solid hsl(var(--accent));
+  border-radius: 999px;
+  color: hsl(var(--accent));
+  background: hsl(var(--deep-purple) / 0.45);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.hero-slider__arrow:hover,
+.hero-slider__arrow:focus {
+  color: hsl(var(--accent-foreground));
+  background: hsl(var(--accent));
+}
+
+.hero-slider__arrow--prev { inset-inline-start: 1.5rem; }
+.hero-slider__arrow--next { inset-inline-end: 1.5rem; }
+
+[dir="rtl"] .hero-slider__arrow svg {
+  transform: scaleX(-1);
+}
+
+@media (max-width: 544px) {
+  .hero-slider__arrow { width: 38px; height: 38px; }
+  .hero-slider__arrow--prev { inset-inline-start: 0.75rem; }
+  .hero-slider__arrow--next { inset-inline-end: 0.75rem; }
+}

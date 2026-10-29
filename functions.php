@@ -12,7 +12,7 @@
 /**
  * Define Constants
  */
-define('CHILD_THEME_ARQAMWEB_VERSION', '1.1.4');
+define('CHILD_THEME_ARQAMWEB_VERSION', '1.1.8');
 
 /**
  * Enqueue styles
@@ -79,3 +79,4 @@ add_action('wp_enqueue_scripts', 'my_custom_scripts');
 
 require_once(get_stylesheet_directory() . '/inc/features.php');
 require_once(get_stylesheet_directory() . '/inc/white-friday.php');
+require_once(get_stylesheet_directory() . '/inc/hero-slider.php');
