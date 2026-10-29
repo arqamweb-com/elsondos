@@ -365,6 +365,11 @@ html:has(.wf-page) { scroll-behavior: smooth; }
 .wf-page .night__day { font-size: 13px; font-weight: 700; color: hsl(var(--accent)); }
 .wf-page .night__date { font-size: 13px; color: hsl(var(--primary-foreground) / .5); }
 .wf-page .night h3 { font-size: 24px; font-weight: 800; margin: 14px 0 4px; }
+.wf-page .night__img { margin: -26px -22px 16px; aspect-ratio: 4 / 3; overflow: hidden; background: hsl(var(--primary-foreground) / .06); }
+.wf-page .night__img img { width: 100%; height: 100%; object-fit: cover; }
+.wf-page .night[data-state="locked"] .night__img img { filter: blur(10px); transform: scale(1.1); }
+.wf-page .night__price { font-size: 15px; font-weight: 700; color: hsl(var(--accent)); margin-bottom: 4px; }
+.wf-page .night__price del { font-size: 13px; font-weight: 400; color: hsl(var(--primary-foreground) / .5); }
 .wf-page .night__pct { font-size: 15px; color: hsl(var(--primary-foreground) / .7); }
 .wf-page .night__pct b { font-size: 40px; font-weight: 900; color: hsl(var(--accent)); }
 .wf-page .night__foot { margin-top: auto; padding-top: 16px; }
@@ -377,7 +382,7 @@ html:has(.wf-page) { scroll-behavior: smooth; }
 }
 .wf-page .night__bell.is-on { background: hsl(var(--accent) / .15); }
 
-.wf-page .night[data-state="locked"] h3, .wf-page .night[data-state="locked"] .night__pct { filter: blur(6px); user-select: none; }
+.wf-page .night[data-state="locked"] h3, .wf-page .night[data-state="locked"] .night__pct, .wf-page .night[data-state="locked"] .night__price { filter: blur(6px); user-select: none; }
 .wf-page .night[data-state="locked"] .night__state { background: hsl(var(--primary-foreground) / .08); color: hsl(var(--primary-foreground) / .6); }
 .wf-page .night[data-state="live"] { background: linear-gradient(160deg, hsl(var(--primary)), hsl(var(--deep-purple))); border-color: hsl(var(--accent)); box-shadow: 0 0 0 1px hsl(var(--accent)), 0 20px 50px -20px hsl(var(--accent) / .5); }
 .wf-page .night[data-state="live"] .night__state { background: hsl(var(--destructive)); color: #fff; }
@@ -470,6 +475,8 @@ html:has(.wf-page) { scroll-behavior: smooth; }
 .wf-page .wf-popup .prize.is-on { transform: translate(-50%, 10px) scale(1); }
 @keyframes wf-fade-in { from { opacity: 0; } to { opacity: 1; } }
 body.wf-popup-open { overflow: hidden; }
+/* holder of the gift box button + popup on the rest of the site: no box of its own */
+.wf-page.wf-page--fab { background: none; overflow: visible; }
 
 @media (prefers-reduced-motion: reduce) {
   .wf-page *, .wf-page *::before, .wf-page *::after { animation: none !important; transition: none !important; }

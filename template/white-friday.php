@@ -25,9 +25,7 @@ get_header(); ?>
 </main>
 
 <div class="wf-page">
-    <?php get_template_part('/template/white-friday/discount', 'popup'); ?>
     <?php get_template_part('/template/white-friday/reminder', 'popup'); ?>
-    <div class="toast" role="status" aria-live="polite" data-toast></div>
 </div>
 
 <?php get_footer(); ?>

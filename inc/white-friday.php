@@ -96,7 +96,8 @@ function elsondos_is_white_friday_page()
 }
 
 add_action('wp_enqueue_scripts', function () {
-    if (!elsondos_is_white_friday_page()) {
+    // the gift box button (above WhatsApp) shows on every page, so its styles + script load site-wide
+    if (!elsondos_is_white_friday_page() && !elsondos_white_friday_active()) {
         return;
     }
 
@@ -115,7 +116,7 @@ add_action('wp_enqueue_scripts', function () {
         'all'
     );
 
-    if (wp_script_is('wc-add-to-cart', 'registered')) {
+    if (elsondos_is_white_friday_page() && wp_script_is('wc-add-to-cart', 'registered')) {
         wp_enqueue_script('wc-add-to-cart');
     }
 
@@ -130,7 +131,8 @@ add_action('wp_enqueue_scripts', function () {
     wp_localize_script('white-friday-page-js', 'WF_DATA', array(
         'start'  => ELSONDOS_WF_START,
         'end'    => ELSONDOS_WF_END,
-        'nights' => elsondos_wf_nights(),
+        'nights' => array_values(elsondos_wf_nights()),
+        'page'   => elsondos_wf_page_url(),
         'ajax'   => admin_url('admin-ajax.php'),
         'lang'   => (string) apply_filters('wpml_current_language', ''),
         // weights are out of 100
@@ -175,19 +177,6 @@ add_filter('astra_page_layout', function ($layout) {
 });
 
 /**
- * The 4 nights (concept 3), used by the page and by the Reminders screen
- */
-function elsondos_wf_nights()
-{
-    return array(
-        array('day' => __('الليلة الأولى', 'arqamweb'),  'date' => __('الجمعة 27 نوفمبر', 'arqamweb'),  'title' => __('العطور الرجالي', 'arqamweb'),              'pct' => 40),
-        array('day' => __('الليلة التانية', 'arqamweb'), 'date' => __('السبت 28 نوفمبر', 'arqamweb'),   'title' => __('العطور الحريمي', 'arqamweb'),              'pct' => 50),
-        array('day' => __('الليلة التالتة', 'arqamweb'), 'date' => __('الأحد 29 نوفمبر', 'arqamweb'),   'title' => __('الرصاصي وسويس أرابيان', 'arqamweb'),       'pct' => 35),
-        array('day' => __('الليلة الأخيرة', 'arqamweb'), 'date' => __('الاثنين 30 نوفمبر', 'arqamweb'), 'title' => __('الفرصة الأخيرة على كل حاجة', 'arqamweb'), 'pct' => 50),
-    );
-}
-
-/**
  * URL of the page that uses the White Friday template (used in the WhatsApp / email messages)
  */
 function elsondos_wf_page_url()
@@ -201,6 +190,21 @@ function elsondos_wf_page_url()
     return $pages ? get_permalink($pages[0]) : home_url('/');
 }
 
+/**
+ * Gift box button above WhatsApp + its popup, on every page while the campaign is on
+ */
+add_action('wp_footer', function () {
+    if (!elsondos_is_white_friday_page() && !elsondos_white_friday_active()) {
+        return;
+    }
+
+    echo '<div class="wf-page wf-page--fab">';
+    get_template_part('/template/white-friday/discount', 'popup');
+    echo '<div class="toast" role="status" aria-live="polite" data-toast></div>';
+    echo '</div>';
+});
+
+require_once(get_stylesheet_directory() . '/inc/white-friday-nights.php');
 require_once(get_stylesheet_directory() . '/inc/white-friday-signups.php');
 require_once(get_stylesheet_directory() . '/inc/white-friday-emails.php');
 

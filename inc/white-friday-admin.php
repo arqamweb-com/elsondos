@@ -438,7 +438,7 @@ add_action('admin_post_elsondos_wf_test_email', function () {
     }
     check_admin_referer('elsondos_wf_test_email');
 
-    $night = elsondos_wf_live_night() ?? 0;
+    $night = elsondos_wf_live_night() ?? array_key_first(elsondos_wf_nights());
     $email = elsondos_wf_reminder_email($night, (string) apply_filters('wpml_current_language', ''));
     $sent  = elsondos_wf_send_email(wp_get_current_user()->user_email, $email);
 

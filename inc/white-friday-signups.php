@@ -118,7 +118,7 @@ function elsondos_wf_ajax_signup()
         $night  = isset($_POST['night']) ? (int) $_POST['night'] : -1;
         $method = sanitize_key(wp_unslash($_POST['method'] ?? ''));
 
-        if ($night < 0 || $night >= count(elsondos_wf_nights()) || !in_array($method, array('whatsapp', 'email'), true)) {
+        if (!array_key_exists($night, elsondos_wf_saved_nights()) || !in_array($method, array('whatsapp', 'email'), true)) {
             wp_send_json_error(array('message' => 'invalid'), 400);
         }
 

@@ -111,23 +111,33 @@
     try { return JSON.parse(localStorage.getItem(REMIND_KEY)) || []; } catch (e) { return []; }
   }
   var grid = document.querySelector('[data-nights-grid]');
-  function nightState(i, now) {
-    var s = new Date(START.getTime() + i * 864e5), e = new Date(s.getTime() + 864e5);
-    return now < s ? 'locked' : now < e ? 'live' : 'done';
+  var esc = function (v) {
+    return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) { return '&#' + c.charCodeAt(0) + ';'; });
+  };
+  // each night has its own open / close time (Dashboard → White Friday → Offers schedule)
+  function nightState(n, now) {
+    return now < new Date(n.start) ? 'locked' : now < new Date(n.end) ? 'live' : 'done';
+  }
+  function nightById(id) {
+    for (var i = 0; i < NIGHTS.length; i++) if (NIGHTS[i].id === id) return NIGHTS[i];
+    return null;
   }
   function renderNights() {
     if (!grid) return;
     var now = new Date();
     var done = reminded();
-    grid.innerHTML = NIGHTS.map(function (n, i) {
-      var on = done.indexOf(i) > -1;
-      var st = nightState(i, now);
+    grid.innerHTML = NIGHTS.map(function (n) {
+      var on = done.indexOf(n.id) > -1;
+      var st = nightState(n, now);
       var label = st === 'live' ? T.live : st === 'done' ? T.done : T.locked;
-      return '<article class="night" data-state="' + st + '">' +
-        '<span class="night__day">' + n.day + '</span><span class="night__date">' + n.date + '</span>' +
-        '<h3>' + n.title + '</h3><div class="night__pct">' + T.discountUpTo + ' <b>' + n.pct + '%</b></div>' +
+      return '<article class="night' + (n.image ? ' night--img' : '') + '" data-state="' + st + '">' +
+        (n.image ? '<div class="night__img"><img src="' + esc(n.image) + '" alt="" loading="lazy"></div>' : '') +
+        '<span class="night__day">' + esc(n.day) + '</span><span class="night__date">' + esc(n.date) + '</span>' +
+        '<h3>' + esc(n.title) + '</h3>' +
+        (n.price ? '<div class="night__price">' + esc(n.price) + (n.regular ? ' <del>' + esc(n.regular) + '</del>' : '') + '</div>' : '') +
+        (n.pct ? '<div class="night__pct">' + T.discountUpTo + ' <b>' + n.pct + '%</b></div>' : '') +
         '<div class="night__foot"><span class="night__state">' + label + '</span>' +
-        (st === 'locked' ? '<button type="button" class="night__bell' + (on ? ' is-on' : '') + '" data-bell="' + i + '">' + (on ? T.reminded : T.remind) + '</button>' : st === 'live' ? '<a href="#deals" class="btn btn-gold btn-sm btn-block" style="margin-top:10px">' + T.enterNight + '</a>' : '') +
+        (st === 'locked' ? '<button type="button" class="night__bell' + (on ? ' is-on' : '') + '" data-bell="' + n.id + '">' + (on ? T.reminded : T.remind) + '</button>' : st === 'live' ? '<a href="' + esc(n.link || '#deals') + '" class="btn btn-gold btn-sm btn-block" style="margin-top:10px">' + T.enterNight + '</a>' : '') +
         '</div></article>';
     }).join('');
   }
@@ -155,8 +165,9 @@
       } else {
         var rp = document.getElementById('wf-reminder-popup');
         rp.querySelector('[name="night"]').value = night;
-        rp.querySelector('[data-reminder-day]').textContent = NIGHTS[night].day + ' · ' + NIGHTS[night].date;
-        rp.querySelector('[data-reminder-title]').textContent = NIGHTS[night].title + ' · ' + T.discountUpTo + ' ' + NIGHTS[night].pct + '%';
+        var nt = nightById(night);
+        rp.querySelector('[data-reminder-day]').textContent = nt.day + ' · ' + nt.date;
+        rp.querySelector('[data-reminder-title]').textContent = nt.title + (nt.pct ? ' · ' + T.discountUpTo + ' ' + nt.pct + '%' : '');
         openPopup('wf-reminder-popup');
       }
     }

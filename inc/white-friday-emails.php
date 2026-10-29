@@ -16,21 +16,19 @@ function elsondos_wf_auto_email_enabled()
 }
 
 /**
- * Index of the night that is open right now, or null
+ * Id of the night that is open right now, or null (open / close times come from the Offers schedule)
  */
 function elsondos_wf_live_night($now = null)
 {
-    $now   = $now ?? time();
-    $start = strtotime(ELSONDOS_WF_START);
-    $end   = strtotime(ELSONDOS_WF_END);
+    $now = $now ?? time();
 
-    if ($now < $start || $now > $end) {
-        return null;
+    foreach (elsondos_wf_saved_nights() as $id => $n) {
+        if ($now >= $n['start'] && $now < $n['end']) {
+            return (int) $id;
+        }
     }
 
-    $index = (int) floor(($now - $start) / DAY_IN_SECONDS);
-
-    return $index < count(elsondos_wf_nights()) ? $index : null;
+    return null;
 }
 
 add_filter('cron_schedules', function ($schedules) {
@@ -46,7 +44,7 @@ add_filter('cron_schedules', function ($schedules) {
  */
 add_action('init', function () {
     $scheduled = wp_next_scheduled(ELSONDOS_WF_EMAIL_HOOK);
-    $needed    = elsondos_white_friday_active() && elsondos_wf_auto_email_enabled() && time() <= strtotime(ELSONDOS_WF_END);
+    $needed    = elsondos_white_friday_active() && elsondos_wf_auto_email_enabled() && time() <= elsondos_wf_last_night_end();
 
     if ($needed && !$scheduled) {
         wp_schedule_event(time() + MINUTE_IN_SECONDS, 'elsondos_wf_10min', ELSONDOS_WF_EMAIL_HOOK);

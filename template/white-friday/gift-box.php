@@ -18,6 +18,6 @@
         <b data-prize-title>—</b>
         <div class="coupon"><code data-prize-code>—</code><button type="button" data-prize-copy data-copy=""><?php echo __('انسخ', 'arqamweb'); ?></button></div>
         <p><?php echo __('الكود صالح لحد 30 نوفمبر على أي منتج في العروض.', 'arqamweb'); ?></p>
-        <a href="#deals" class="btn btn-primary btn-sm" style="margin-top:12px" data-popup-close><?php echo __('استخدمه دلوقتي', 'arqamweb'); ?></a>
+        <a href="<?php echo esc_url(elsondos_is_white_friday_page() ? '#deals' : elsondos_wf_page_url() . '#deals'); ?>" class="btn btn-primary btn-sm" style="margin-top:12px" data-popup-close><?php echo __('استخدمه دلوقتي', 'arqamweb'); ?></a>
     </div>
 </div>
