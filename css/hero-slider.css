@@ -1,9 +1,10 @@
 /* ---------- Front page hero slider ---------- */
 
-/* full screen height like the old hero; images are cropped to fill it */
+/* height follows the image ratio on every screen so the image is never cropped
+   (--hero-ratio is set inline from the first slide, 1520x730 by default) */
 .hero-slider {
   position: relative;
-  height: 100vh;
+  aspect-ratio: var(--hero-ratio, 1520 / 730);
   overflow: hidden;
   background: hsl(var(--deep-purple));
 }
@@ -71,4 +72,13 @@
   .hero-slider__arrow { width: 38px; height: 38px; }
   .hero-slider__arrow--prev { inset-inline-start: 0.75rem; }
   .hero-slider__arrow--next { inset-inline-end: 0.75rem; }
+}
+
+/* ---------- Feature boxes under the slider ---------- */
+/* they overlap the slider bottom on desktop (-mt-20); on mobile the slider is short,
+   so push them below it to keep the image clear */
+@media (max-width: 767px) {
+  .hero-features {
+    margin-top: 1.5rem;
+  }
 }

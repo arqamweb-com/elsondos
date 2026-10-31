@@ -1,5 +1,17 @@
-<?php $slides = elsondos_hero_slides(); ?>
-<section class="hero-slider" aria-label="<?php echo esc_attr__('عطور السندس الفاخرة', 'arqamweb'); ?>">
+<?php
+$slides = elsondos_hero_slides();
+$ratio  = '';
+
+// slider box takes the first slide's ratio so the image shows whole on all screens
+if (!empty($slides)) {
+    $meta = wp_get_attachment_metadata($slides[0]);
+
+    if (!empty($meta['width']) && !empty($meta['height'])) {
+        $ratio = '--hero-ratio: ' . absint($meta['width']) . ' / ' . absint($meta['height']) . ';';
+    }
+}
+?>
+<section class="hero-slider"<?php echo $ratio ? ' style="' . esc_attr($ratio) . '"' : ''; ?> aria-label="<?php echo esc_attr__('عطور السندس الفاخرة', 'arqamweb'); ?>">
     <?php if (empty($slides)) : ?>
         <div class="hero-slider__slide is-active">
             <img src="<?php echo get_stylesheet_directory_uri(); ?>/frontend/assets/hero-perfume.jpg" alt="<?php echo esc_attr__('عطور السندس الفاخرة', 'arqamweb'); ?>">

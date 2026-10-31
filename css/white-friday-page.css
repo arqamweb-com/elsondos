@@ -503,5 +503,6 @@ body.wf-popup-open { overflow: hidden; }
 .wf-page .wf-reminder-form .tab[aria-selected="true"] { background: hsl(var(--primary)); }
 .wf-page .form [type="submit"]:disabled { opacity: .6; pointer-events: none; }
 
-/* honeypot, hidden from real visitors */
-.wf-page .wf-hp { position: absolute !important; left: -9999px !important; width: 1px !important; height: 1px !important; opacity: 0 !important; }
+/* honeypot, hidden from real visitors
+   clipped in place (no -9999px offset: on RTL pages that made the page ~10000px wide and scrolled it sideways to a blank screen) */
+.wf-page .wf-hp { position: absolute !important; top: 0 !important; inset-inline-start: 0 !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; border: 0 !important; overflow: hidden !important; clip-path: inset(50%) !important; opacity: 0 !important; pointer-events: none !important; }

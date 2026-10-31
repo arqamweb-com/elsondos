@@ -1,4 +1,4 @@
-<section class="relative -mt-20 z-20 container mx-auto px-4">
+<section class="hero-features relative -mt-20 z-20 container mx-auto px-4">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div class="glass-card rounded-2xl p-6 text-center transition-all duration-300 hover:scale-105 hover:shadow-xl animate-fade-up stagger-1">
             <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-primary/10 flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck text-primary">

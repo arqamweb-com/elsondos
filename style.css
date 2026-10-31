@@ -19,3 +19,9 @@ Text Domain: arqamweb
 Template: astra
 
 */
+
+/* hide Astra's basket icon on product cards when it would say "Read more"
+   (Astra drops .add_to_cart_button when the product is out of stock / has no price) */
+.ast-select-options-trigger:not(.add_to_cart_button) {
+  display: none !important;
+}

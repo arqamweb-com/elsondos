@@ -138,3 +138,15 @@ add_filter('register_taxonomy_args', function ($args, $taxonomy) {
 
     return $args;
 }, 20, 2);
+
+/**
+ * Hide the "Read more" button on product cards
+ * - WooCommerce shows it instead of "Add to cart" when the product can't be bought (out of stock / no price)
+ */
+add_filter('woocommerce_loop_add_to_cart_link', function ($link, $product) {
+    if (!$product->is_purchasable() || !$product->is_in_stock()) {
+        return '';
+    }
+
+    return $link;
+}, 10, 2);
