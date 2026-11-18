@@ -45,7 +45,7 @@ get_header(); ?>
                     'taxonomy'      => 'product_brand',
                     'order'         => 'ASC',
                     'hide_empty'    => true,
-                    'number'        => 8,
+                    'number'        => -1,
                 );
 
                 $brands = get_terms($args);
