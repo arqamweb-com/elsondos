@@ -112,9 +112,11 @@
   var esc = function (v) {
     return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) { return '&#' + c.charCodeAt(0) + ';'; });
   };
-  // each night has its own open / close time (Dashboard → White Friday → Offers schedule)
+  // each night opens at its own time (Dashboard → White Friday → Offers schedule) and stays open
+  // after the next one opens, until the campaign's last night closes
+  var NIGHTS_END = NIGHTS.reduce(function (max, n) { var e = new Date(n.end); return e > max ? e : max; }, END);
   function nightState(n, now) {
-    return now < new Date(n.start) ? 'locked' : now < new Date(n.end) ? 'live' : 'done';
+    return now < new Date(n.start) ? 'locked' : now < NIGHTS_END ? 'live' : 'done';
   }
   function nightById(id) {
     for (var i = 0; i < NIGHTS.length; i++) if (NIGHTS[i].id === id) return NIGHTS[i];

@@ -12,7 +12,7 @@
 /**
  * Define Constants
  */
-define('CHILD_THEME_ARQAMWEB_VERSION', '1.1.10');
+define('CHILD_THEME_ARQAMWEB_VERSION', '1.1.11');
 
 /**
  * Enqueue styles
